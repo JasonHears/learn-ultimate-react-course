@@ -41,11 +41,19 @@ function SkillList() {
   );
 }
 
-function Skill(props) {
+function Skill({bgColor, name, emoji, level}) {
+  
   return (
-    <li className="skill" style={{ backgroundColor: props.bgColor }}>
-      <span style={{ backgroundColor: props.bgColor }}>{props.name}</span>
-      <span style={{ backgroundColor: props.bgColor }}>{props.emoji}</span>
+    <li className="skill" style={{ backgroundColor: bgColor }}>
+      <span style={{ backgroundColor: bgColor }}>{name}</span>
+      <span style={{ backgroundColor: bgColor }}>{
+        emoji !== undefined 
+        ? emoji : level==="beginner" 
+        ? `👨🏻‍🏫` : level==="intermediate" 
+        ? `🧑🏻‍💻` : level==="advanced" 
+        ? `👨🏻‍🔬` : level==="expert" 
+        ? `🥷🏻` : `🪫`
+      }</span>
     </li>
   );
 }
