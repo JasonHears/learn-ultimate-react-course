@@ -142,3 +142,121 @@ function getBooks() {
 function getBook(id) {
   return data.find((d) => d.id === id);
 }
+
+// const books = getBooks();
+
+// const book = getBook(3);
+// const { title, author, pages, publicationDate, genres, hasMovieAdaptation } =
+//   book;
+// console.log(title, author, genres);
+
+// [primaryGenre, secondaryGenre, ...otherGenres] = genres;
+
+// console.log(primaryGenre, secondaryGenre, otherGenres);
+
+// const newGenres = [...genres, "epic fantasy"];
+
+// console.log(newGenres);
+
+// const updatedBook = {
+//   ...book,
+//   moviePublicationDate: "05-06-1975",
+//   pages: 12345, // will overwrite original property when it comes after the spread operator
+// };
+
+// console.log(updatedBook);
+
+// const summary = `${title} is a book`;
+// summary;
+
+// console.log(true && "This is returned");
+// console.log(false && "this is not returned");
+
+// console.log(true || "This is not returned");
+// console.log(false || "This is returned");
+
+// // || uses flasey values: 0, '', null, undefined
+// const wrongCount = book.reviews.librarything?.reviewsCount || "No data";
+// wrongCount;
+
+// // ?? - only null or undefined
+// const correctCount = book.reviews.librarything?.reviewsCount ?? "No data";
+// correctCount;
+
+// // optional chaining on book.reviews.librarything since it doesn't always exist
+// const chainedValue =
+//   (book.reviews?.goodreads?.reviewsCount ?? 0) +
+//   (book.reviews?.librarything?.reviewsCount ?? 0);
+// console.log(chainedValue);
+
+/**
+const books = getBooks();
+
+books;
+
+const x = [1, 2, 3, 4, 5].map((el) => el * 2);
+x;
+
+const titles = books.map((book) => book.title);
+titles;
+
+const importantData = books.map((book) => ({
+  title: book.title,
+  author: book.author,
+}));
+importantData;
+
+const longBooks = books
+  .filter((book) => book.pages > 500)
+  .filter((book) => book.hasMovieAdaptation)
+  .map((book) => book.title);
+longBooks;
+
+const allBooksPages = books.reduce((acc, book) => acc + book.pages, 0);
+allBooksPages;
+
+let arr = [2, 5, 1, 13, 8, 3];
+arr;
+let sorted = arr.sort((a, b) => a - b); // sort mutates original array
+arr;
+sorted;
+
+arr = [2, 5, 1, 13, 8, 3];
+sorted = arr.slice().sort((a, b) => a - b);
+arr;
+sorted;
+
+const sortedByPages = books.slice().sort((a, b) => a.pages - b.pages);
+const pages = sortedByPages.map((a) => `${a.title}, ${a.pages}`);
+pages;
+
+const newBook = {
+  id: 6,
+  title: "Hi Hungry, I'm Dad!",
+  author: "Jason Holderness",
+  pages: 27,
+};
+
+const booksAfterAdd = [...books, newBook];
+booksAfterAdd;
+
+const booksAfterDelete = booksAfterAdd.filter((book) => book.id !== 6);
+booksAfterDelete;
+
+const booksAfterUpdate = booksAfterDelete.map((book) =>
+  book.id === 1 ? { ...book, title: `New Release: ${book.title}` } : book
+);
+booksAfterUpdate;
+*/
+
+fetch("https://jsonplaceholder.typicode.com/todos")
+  .then((res) => res.json())
+  .then((data) => console.log(data[0]));
+
+async function getTodo() {
+  const res = await fetch("https://jsonplaceholder.typicode.com/todos");
+  const data = await res.json();
+  console.log(data[0]);
+}
+
+getTodo();
