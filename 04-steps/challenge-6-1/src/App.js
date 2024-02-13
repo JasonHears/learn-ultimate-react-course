@@ -1,5 +1,8 @@
 import { useState } from "react";
 
+const initialCount = 0;
+const initialStep = 1;
+
 export default function App() {
   return (
     <div className="App">
@@ -9,11 +12,24 @@ export default function App() {
 }
 
 function Counter() {
-  const [count, setCount] = useState(0); // today
-  const [step, setStep] = useState(1); // one day at a time
+  const [count, setCount] = useState(initialCount); // today
+  const [step, setStep] = useState(initialStep); // one day at a time
 
   const date = new Date("June 21 2027");
   date.setDate(date.getDate() + count);
+
+  function handleSlider(e) {
+    setStep(+e.target.value);
+  }
+
+  function handleInput(e) {
+    setCount(+e.target.value);
+  }
+
+  function handleReset() {
+    setCount(initialCount);
+    setStep(initialStep);
+  }
 
   return (
     <div
@@ -24,13 +40,18 @@ function Counter() {
       }}
     >
       <div>
-        <button onClick={() => setStep((c) => (c > 1 ? c - 1 : c))}>-</button>
-        <span>Step: {step}</span>
-        <button onClick={() => setStep((c) => c + 1)}>+</button>
+        <input
+          type="range"
+          min="1"
+          max="10"
+          onChange={handleSlider}
+          value={step}
+        />
+        <span>{step}</span>
       </div>
       <div>
         <button onClick={() => setCount((c) => c - step)}>-</button>
-        <span>Count: {count}</span>
+        <input type="number" value={count} onChange={handleInput} />
         <button onClick={() => setCount((c) => c + step)}>+</button>
       </div>
       <div style={{ marginTop: "20px" }}>
@@ -43,6 +64,15 @@ function Counter() {
         </span>
         <span>{date.toDateString()}</span>
       </div>
+      {count === 0 && step === 1 ? null : (
+        <div
+          style={{
+            marginTop: "20px",
+          }}
+        >
+          <button onClick={handleReset}>Reset</button>
+        </div>
+      )}
     </div>
   );
 }
