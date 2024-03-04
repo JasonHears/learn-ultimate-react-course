@@ -19,6 +19,10 @@ export default function App() {
   const { movies, isLoading, error } = useMovies(query);
 
   const [watched, setWatched] = useLocalStorageState([], "watched");
+  // const [watched, setWatched] = useState(() => {
+  //   const storedValue = JSON.parse(localStorage.getItem("watched"));
+  //   return storedValue;
+  // });
 
   function handleSelectMovie(id) {
     setSelectedId(id === selectedId ? null : id);
@@ -33,6 +37,10 @@ export default function App() {
 
     // localStorage.setItem("watched", JSON.stringify([...watched, movie]));
   }
+
+  // useEffect(() => {
+  //   localStorage.setItem("watched", JSON.stringify(watched));
+  // }, [watched]);
 
   function handleDeleteWatched(id) {
     setWatched((watched) => watched.filter((mv) => mv.imdbID !== id));
@@ -124,6 +132,10 @@ function Main({ children }) {
 }
 
 function Search({ query, setQuery }) {
+  // useEffect(()=>{
+  //   const el = document.querySelector(".search");
+  //   el.focus();
+  // }, [])
   const inputEl = useRef(null);
 
   useKey("enter", () => {
@@ -197,7 +209,7 @@ function MovieDetails({
 
   useEffect(() => {
     if (userRating) countRef.current = countRef.current + 1;
-  }, [userRating]);
+  }, [userRating]); // every time userRating changes, do this effect
 
   const {
     Title: title,
