@@ -26,24 +26,24 @@ const initialState = {
 };
 
 function reducer(state, action) {
-  if (!state.isActive && action.type !== "openAccount") return { ...state };
+  if (!state.isActive && action.type !== "openAccount") return state;
   switch (action.type) {
     case "openAccount":
       return { ...state, isActive: true, balance: 500 };
 
     case "closeAccount":
-      if (state.balance !== 0 || state.loan !== 0) return { ...state };
+      if (state.balance !== 0 || state.loan !== 0) return state;
       return { ...state, isActive: false };
 
     case "deposit":
       return { ...state, balance: state.balance + action.payload };
 
     case "withdraw":
-      if (state.balance - action.payload < 0) return { ...state };
+      if (state.balance - action.payload < 0) return state;
       return { ...state, balance: state.balance - action.payload };
 
     case "getLoan":
-      if (state.loan > 0) return { ...state };
+      if (state.loan > 0) return state;
       return {
         ...state,
         balance: state.balance + action.payload,
@@ -51,7 +51,7 @@ function reducer(state, action) {
       };
 
     case "payLoan":
-      if (state.balance < state.loan) return { ...state };
+      if (state.balance < state.loan) return state;
       return { ...state, balance: state.balance - state.loan, loan: 0 };
 
     default:
