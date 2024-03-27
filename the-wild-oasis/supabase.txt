@@ -1,0 +1,5 @@
+Project URL:
+https://fpmugahjohehlyishser.supabase.co
+
+SupaBase Project API Key:
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZwbXVnYWhqb2hlaGx5aXNoc2VyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTE1NzI3MTksImV4cCI6MjAyNzE0ODcxOX0.chXyojkivA1Bl0qhK4dYTZpPjH2lpSNu4G3uXBDZJl0
