@@ -86,14 +86,14 @@ export async function getBookings(guestId) {
     .from("bookings")
     // We actually also need data on the cabins as well. But let's ONLY take the data that we actually need, in order to reduce downloaded data.
     .select(
-      "id, created_at, startDate, endDate, numNights, numGuests, totalPrice, guestId, cabinId, cabins(name, image)"
+      "id, createdAt, startDate, endDate, numNights, numGuests, totalPrice, guestId, cabinId, cabins(name, image)"
     )
     .eq("guestId", guestId)
     .order("startDate");
 
   if (error) {
     console.error(error);
-    throw new Error("Bookings could not get loaded");
+    throw new Error("Bookings were not loaded");
   }
 
   return data;
@@ -143,6 +143,16 @@ export async function getSettings() {
 }
 
 export async function getCountries() {
+  return [
+    {
+      name: "United States",
+      flag: "https://countries.petethompson.net/data/flags/usa.svg",
+    },
+    {
+      name: "Canada",
+      flag: "https://countries.petethompson.net/data/flags/can.svg",
+    },
+  ];
   try {
     const res = await fetch(
       "https://restcountries.com/v2/all?fields=name,flag"
