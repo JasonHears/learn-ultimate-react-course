@@ -6,6 +6,6 @@
       { "allowConstantExport": true }
     ],
     "no-unused-vars": "warn",
-    "react/prop-types": "ignore"
+    "react/prop-types": "warn"
   }
 }
